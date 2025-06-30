@@ -19,6 +19,6 @@ public:
 	UFUNCTION(BlueprintCallable,Category="MyCategory")
 	static FString BytesToString(const TArray<uint8>& Bytes);
 	UFUNCTION(BlueprintCallable, Category = "MyCategory")
-	static USoundWaveProcedural* CreateProceduralSoundWaveFromWav(const TArray<uint8>& BinaryData);
+	static USoundWaveProcedural* CreateProceduralSoundWaveFromWav(const FString& Base64String);
 
 };

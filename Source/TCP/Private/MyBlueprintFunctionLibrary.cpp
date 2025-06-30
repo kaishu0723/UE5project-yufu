@@ -19,9 +19,9 @@ FString UMyBlueprintFunctionLibrary::BytesToString(const TArray<uint8>& Bytes)
 
 
 #include "Misc/Base64.h"
-USoundWaveProcedural* UMyBlueprintFunctionLibrary::CreateProceduralSoundWaveFromWav(const TArray<uint8>& BinaryData) {
-	/*TArray<uint8> BinaryData;
-	FBase64::Decode(Base64String, BinaryData);*/
+USoundWaveProcedural* UMyBlueprintFunctionLibrary::CreateProceduralSoundWaveFromWav(const FString& Base64String) {
+	TArray<uint8> BinaryData;
+	FBase64::Decode(Base64String, BinaryData);
 
     FWaveModInfo WaveInfo;
 
@@ -32,7 +32,7 @@ USoundWaveProcedural* UMyBlueprintFunctionLibrary::CreateProceduralSoundWaveFrom
     USoundWaveProcedural* ProcWave = NewObject<USoundWaveProcedural>();
 
     ProcWave->SetSampleRate(*WaveInfo.pSamplesPerSec);
-    ProcWave->NumChannels = *WaveInfo.pChannels;
+    ProcWave->NumChannels = 1;
     ProcWave->Duration = (float)WaveInfo.SampleDataSize
         / ((*WaveInfo.pChannels)
             * (*WaveInfo.pBitsPerSample / 8.f)
